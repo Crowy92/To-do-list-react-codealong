@@ -2,13 +2,16 @@ import React from 'react'
 
 export default function TodoForm(props) {
   function handleInputText(e) {
-    setInputText(e.target.value);
+    props.setInputText(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSubmitValue(inputText);
-    setInputText('');
+    props.setTodos([
+      ...props.todos,
+      {text:props.inputText, completed: false, id: Math.floor(Math.random() * 1000)}
+    ])
+    props.setInputText('');
   }
   return (
     <form>
